@@ -1,0 +1,56 @@
+diff --git a/autoload/SpaceVim.vim b/autoload/SpaceVim.vim
+index 5259bc3e..cf360c55 100644
+--- a/autoload/SpaceVim.vim
++++ b/autoload/SpaceVim.vim
+@@ -62,7 +62,7 @@ lockvar g:spacevim_version
+ let g:spacevim_default_indent          = 2
+ ""
+ " In Insert mode: Use the appropriate number of spaces to insert a <Tab>
+-let g:spacevim_expand_tab              = 1
++let g:spacevim_expand_tab              = 0
+ 
+ ""
+ " @section relativenumber, options-relativenumber
+@@ -641,7 +641,9 @@ let g:spacevim_search_tools            = ['rg', 'ag', 'pt', 'ack', 'grep', 'find
+ ""
+ " Set the project rooter patterns, by default it is
+ " `['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']`
+-let g:spacevim_project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
++"let g:spacevim_project_rooter_patterns = ['.git/', '_darcs/', '.hg/', '.bzr/', '.svn/']
++" rokid diabled .git dir as the root dir
++let g:spacevim_project_rooter_patterns = ['_darcs/', '.hg/', '.bzr/', '.svn/']
+ ""
+ " Enable/Disable changing directory automatically. Enabled by default.
+ let g:spacevim_project_rooter_automatically = 1
+diff --git a/autoload/SpaceVim/default.vim b/autoload/SpaceVim/default.vim
+index a1a6b752..528ee2d9 100644
+--- a/autoload/SpaceVim/default.vim
++++ b/autoload/SpaceVim/default.vim
+@@ -115,7 +115,7 @@ function! SpaceVim#default#options() abort
+   set incsearch
+   set hlsearch
+   set wildignorecase
+-  set mouse=nv
++  set mouse-=a
+   set hidden
+   set ttimeout
+   set ttimeoutlen=50
+diff --git a/vimrc b/vimrc
+index b723ff17..9ecdbd2d 100644
+--- a/vimrc
++++ b/vimrc
+@@ -8,6 +8,14 @@
+ 
+ " Note: Skip initialization for vim-tiny or vim-small.
+ if 1
++set nocp
+     execute 'source' fnamemodify(expand('<sfile>'), ':h').'/config/main.vim'
+ endif
++
++set wrap
++
++"set list
+ " vim:set et sw=2
++
++set tags=./tags
++"set autochdir
